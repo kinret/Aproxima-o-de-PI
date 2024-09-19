@@ -1,0 +1,328 @@
+\documentclass[a4paper, 12pt]{article}
+
+% PACOTES
+% Pacote para acentuação:
+\usepackage[utf8]{inputenc}
+% Margens padrão ABNT:
+\usepackage[left=3cm, top=3cm, right=2cm, bottom=2cm]{geometry}
+% Pacote para ajustar espaço de linha em ABNT:
+\usepackage{setspace}
+% Recuo de início de parágrafo da ABNT
+\setlength{\parindent}{1.25cm}
+% Pacote para inserir imagens
+\usepackage{graphicx}
+% Pacote para adicionar recuo ao primeiro parágrafo
+\usepackage{indentfirst}
+% Conjunto de pacotes para usar símbolos matemáticos
+\usepackage{amsmath, amssymb, amsfonts, amsthm, cancel}
+% Pacote pt-BR
+\usepackage[brazil]{babel}
+% Config. para colocar a numeração da pág. no canto superior dir. (ABNT) 
+\pagestyle{myheadings}
+% Pacote para criar graficos
+\usepackage{tikz, float, caption}
+% Comando pra circular numeros
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+            
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%% Página 19 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   \section{FÓRMULA DE MACHIN} 
+    
+  \begin{center}
+    \[
+     \frac{\pi}{6} = \arctan\left(\frac{1}{\sqrt{3}}\right) = \frac{1}{\sqrt{3}} \sum_{k=0}^{n} (-1)^k \frac{1}{3^k(2k+1)} + R_n\left(\frac{1}{\sqrt{3}}\right)
+    \]
+    \[
+    |R_n| \leq \frac{1}{\sqrt{3}} \cdot \frac{1}{3^{n+1}} \cdot \frac{1}{2n+3}
+    \]
+    \[
+     \arctan\left(x\right) = \sum_{k=0}^{\infty} \frac{x^{4k+1}}{4k+1} - \frac{x^{4k+3}}{4k+3} = x^{4k+1} (\frac{1}{4k+1} - \frac{x^2}{4k+3})
+    \]
+    \[
+     \therefore \frac{\pi}{6} = \arctan\left(\frac{1}{\sqrt{3}}\right) = \frac{1}{\sqrt{3}} \sum_{k=0}^{\infty} \frac{1}{3^{2k}} \cdot \frac{\overset{8k+8 = 4(2k+2)}{\cancel{12k} + \cancel{9} - \cancel{4k} - \cancel{1}}}{3(4k+1)(4k+3)}
+    \]
+    \[
+     \pi = \frac{\overset{2}{\cancel{6}} \cdot 4}{\sqrt{3} \cdot \cancel{3}} \sum_{k=0}^{\infty} \frac{1}{3^{2k}} \cdot \frac{2k+2}{(2(2k)+1)(2(2k)+3)} = \frac{8 \sqrt{3}}{3} \sum_{i=0}^{\infty} \frac{1}{3^i}\frac{i+2}{(2i+1)(2i+3)} , i+=2
+    \]
+
+\end{center}
+\textbf{Tratamento de erro:}
+    \[
+    2(m+1) = 2m+2 < 2m+3 \to \frac{1}{2m+3} < \frac{1}{2m+1}
+    \]
+    \[
+    \therefore 6R_n \leq \frac{6}{2(n+1)} \cdot \frac{1}{\sqrt{3}} \cdot \frac{1}{3^{n+1}} \overset{?}{<} \epsilon
+    \]
+    \[
+    \therefore \frac{1}{\epsilon} \cdot \frac{6}{2\sqrt{3}} < 3^{n+1}(n+1) = \frac{1}{\epsilon} \cdot \sqrt{3}
+    \]
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Página 20 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Tratamento de erro no caso geral:}
+    \[
+    A \arctan\left(\frac{1}{a}\right) = A P_n (\frac{1}{a}) + A R_n (\frac{1}{a}) = A \sum_{k=0}^{m} (-1)^k \cdot \frac{(\frac{1}{a})^{2k+1}}{2k+1} + A R_n (\frac{1}{a}) ,
+    \]
+    \[
+    \text{com } |R_n| \leq \frac{(\frac{1}{a})^{2m+3}}{2m+3}
+    \]      
+    \[
+    A \cdot \frac{1}{a^{2m+3}} \cdot \frac{1}{2m+3} < \frac{1}{a^{2m+3}} \cdot \frac{1}{2(m+1)} \overset{?}{<} \frac{\epsilon}{7}
+    \]
+    \[
+    \underbrace{\frac{1}{\epsilon} \cdot \frac{qA}{2a}} < a^{2(m+1)} \cdot (m+1)
+    \] 
+    \text{\small Pode ser usada divisão inteira (floor division), pois o termo à direita é inteiro}
+    \[
+    \text{De } \epsilon = 10^{-d}\text{, tem-se: } 10^d \cdot \frac{9A}{2a} < a^{2(m+1)} \cdot (m+1)
+    \] 
+    %%%%%%%%%%%%%%%%%%%%% Página 21 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{\underline{Exercício:}} \\
+    \text{Integrando por partes, tem-se:}
+    \[
+    \int \arctan(x) \, dx = x \cdot \arctan(x) - \frac{1}{2} \int \frac{2x}{1+x^2} \, dx = x \arctan(x) - \frac{1}{2} \ln(1+x^2)
+    \]
+    \[
+    \therefore \frac{\pi}{4} = \int_{0}^1 \arctan(x) \, dx + \frac{1}{2} \ln(2)
+    \]
+    \[
+    \text{Agora, } \int_{0}^{1} \arctan(x) \, dx = \sum_{k=0}^{\infty} (-1)^k \int_{0}^{1} \frac{x^{2k+1}}{2k+1} \, dx = \sum_{k=0}^{\infty} (-1)^k \frac{1}{(2k+1)(2k+2)}
+    \] 
+     \[
+     = \sum_{k=0}^{\infty} (-1)^k \bigg[\frac{1}{2k+1} - \frac{1}{2k+2}\bigg]
+     \]
+     \[
+     \text{Por outro lado, } \ln(1+x) = \sum_{k=0}^{\infty} (-1)^k \frac{x^{k+1}}{k+1} \text{ com, } -1 < x \leq 1 \rightarrow 
+     \]
+     \[
+     \rightarrow \ln(2) = \ln(1+1) = \sum_{k=0}^{\infty} \frac{(-1)^k}{k+1} = \sum_{k=0}^{\infty} \bigg[\frac{1}{2k+1} - \frac{1}{2k+2}\bigg]
+     \]
+     \[
+     \frac{\pi}{4} = \sum_{k=0}^{\infty} \overset{\frac{3}{2}}{(1+\frac{1}{2})} \bigg[\frac{1}{4k+1} - \frac{1}{4k+2}\bigg] + \overset{-\frac{1}{2}}{(-1+\frac{1}{2})} \bigg[\frac{1}{4k+3} - \frac{1}{4k+4}\bigg]
+     \]
+     \[
+     \therefore \pi = 2 \sum_{k=0}^{\infty} \bigg[\frac{3}{4k+1} - \frac{3}{4k+2} - \frac{1}{4k+3} + \frac{1}{4k+4}\bigg]
+     \]
+     %%%%%%%%%%%%%%%%%%%%%%%% Página 22 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     \textbf{\underline{Exercício:}} \\
+     Sejam \( a > 0 \), e \( 0 < \epsilon < a^2 \). Prove que:
+     \[
+     \min(a - \sqrt{a^2-\epsilon}\text{, }\sqrt{a^2+\epsilon} - a) = \sqrt{a^2+\epsilon} - a
+     \]
+     \textbf{Demonstração:}
+     Observe que:
+     \[
+     (a^2 - \epsilon)(a^2 + \epsilon) = a^4 - \epsilon^2 < a^4 \rightarrow
+     \]
+     \[
+     \sqrt{a^2-\epsilon} \sqrt{a^2+\epsilon} < a^2
+     \]
+     \[
+     2\sqrt{a^2-\epsilon} \sqrt{a^2+\epsilon} < 2a^2
+     \]
+     \[
+     2\sqrt{a^2-\epsilon} \sqrt{a^2+\epsilon} + \underset{a^2 + a^2 = (a^2 + \epsilon) + (a^2 - \epsilon)}{\underbrace{2a^2}} < 2a^2 + 2a^2 = 4a^2 = (2a)^2
+     \]
+     \[
+     \therefore (a^2+\epsilon) + 2\sqrt{a^2-\epsilon}\sqrt{a^2+\epsilon} + (a^2-\epsilon) < (2a)^2
+     \]
+     \[
+     (\sqrt{a^2-\epsilon}+\sqrt{a^2+\epsilon})^2 < (2a)^2
+     \]
+     \[
+     \sqrt{a^2-\epsilon}+\sqrt{a^2+\epsilon} \underset{\text{se }a>0}{<} 2a = a + a (*)
+     \]
+     \[
+     \therefore \boxed{\sqrt{a^2+\epsilon} - a < a - \sqrt{a^2 - \epsilon}}
+     \]
+     %%%%%%%%%%%%%%%%%%%%%%% Página 23 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     \[
+     \underline{O/F:} (*) \rightarrow 1 < \frac{2a}{\sqrt{a^2+\epsilon} + \sqrt{a^2-\epsilon}} \rightarrow 1 - \frac{2a}{\sqrt{a^2+\epsilon} + \sqrt{a^2-\epsilon}} < 0 \rightarrow
+     \]
+     \[
+     \rightarrow -2\epsilon + \frac{2a \cdot \overbrace{2\epsilon}^{= \epsilon + \epsilon = a^2+\epsilon - a^2+\epsilon = (a^2+\epsilon) - (a^2 - \epsilon)}}{\sqrt{a^2+\epsilon} + \sqrt{a^2-\epsilon}} > 0
+     \]
+     \[
+     -2\epsilon + 2a \frac{(\sqrt{a^2+\epsilon} - \sqrt{a^2-\epsilon} )(\cancel{\sqrt{a^2+\epsilon} + \sqrt{a^2-\epsilon}})}{\cancel{\sqrt{a^2+\epsilon} + \sqrt{a^2-\epsilon}}} > 0
+     \]
+     \[
+     -2\epsilon + 2a (\sqrt{a^2+\epsilon} - \sqrt{a^2-\epsilon}) > 0
+     \]
+     \[
+     \therefore 0 < 2a\sqrt{a^2+\epsilon} - 2a\sqrt{a^2-\epsilon} \underbrace{- \epsilon + 2a^2 - 2a^2 - \epsilon}_{(a^2-\epsilon)+a^2 - (a^2+\epsilon) - a^2}
+     \]
+     \[
+     = 2a\sqrt{a^2+\epsilon} - (a^2+\epsilon) - a^2 + (a^2-\epsilon) - 2a\sqrt{a^2-\epsilon} + a^2
+     \]
+     \[
+     = (\sqrt{a^2-\epsilon} - a)^2 - (\sqrt{a^2+\epsilon} - a)^2 = (\underbrace{a - \sqrt{a^2-\epsilon}}_{=:\delta_1})^2 - (\underbrace{\sqrt{a^2+\epsilon} - a}_{=:\delta_2})^2
+     \]
+     \[
+     \hspace{148pt} \therefore \boxed{\delta_1^2 - \delta_2^2 > 0} \hspace{144pt} (*)
+     \]
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Página 24 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     Por outro lado, tem-se:
+     \[
+     a^2-\epsilon < a^2 \rightarrow \sqrt{a^2-\epsilon} < a \rightarrow 0 < a - \sqrt{a^2-\epsilon} = \delta_1
+     \] 
+     e analogamente:
+     \[
+     a^2+\epsilon > a^2 \rightarrow \sqrt{a^2+\epsilon} > a \rightarrow 0 < \sqrt{a^2+\epsilon} - a = \delta_2
+     \]
+     \[
+     \hspace{104pt} \therefore \delta_1 > 0 \wedge \delta_2 > 0 \rightarrow \delta_1 + \delta_2 > 0 \hspace{100pt} (**)
+     \]
+     \[
+     \therefore \delta_1 - \delta_2 = \frac{\overbrace{\delta_1^2 - \delta_2^2}^{> 0 \text{ por } (*)}}{\underbrace{\delta_1 - \delta_2}_{> 0 \text{ por } (**)}} > 0 \rightarrow \delta_1 > \delta_2
+     \]
+     ou seja:
+     \[
+     \boxed{\sqrt{a^2+\epsilon} - a < a - \sqrt{a^2-\epsilon}}
+     \]
+    %---------------------------- Figura 1 ------------------------------%
+    \begin{figure} [H]
+    \centering
+    \begin{tikzpicture}
+    
+    % Eixos
+    \draw[->] (-1, 0) -- (5, 0) node[below] {$x$};
+    \draw[->] (0, -1) -- (0, 5) node[left] {$f(x) = x^2$};
+
+    % Curva da função
+    \draw[domain=0:4.45, smooth, variable=\x, thick] plot (\x, {\x*\x/4});
+
+    % Ponto a^2
+    \draw[dashed] (0, 2.25) -- (2.93, 2.25);
+    \draw[dashed] (2.93, 0) -- (2.93, 2.25);
+    \node[below] at (2.93, 0) {\small$a$};
+    \node[left] at (0, 2.25) {$a^2$};
+
+    % Intervalo epsilon
+    \draw[dashed] (0, 3.5) -- (3.7, 3.5);
+    \draw[dashed] (3.7, 0) -- (3.7, 3.5);
+    \draw[dashed] (0, 1) -- (2, 1);
+    \draw[dashed] (2, 0) -- (2, 1);
+    \node[left] at (0, 3.5) {$a^2 + \epsilon$};
+    \node[left] at (0, 1) {$a^2 - \epsilon$};
+
+    % Ponto no eixo X epsilon
+    \node[below] at (1.7, 0) {\small$\sqrt{a^2 - \epsilon}$};
+    \node[below] at (3.9, 0) {\small$\sqrt{a^2 + \epsilon}$};
+
+    % Distância Epsilon
+    \draw[<->] (1.7, 2.25) -- (1.7, 3.5);
+    \node[right] at (1.7, 2.9) {$\epsilon$};
+
+    % Delta 1 e Delta 2
+    \draw[<->] (2, 0.5) -- (2.93, 0.5);
+    \node[below] at (2.5, 1.1) {$\delta_1$};
+    \draw[<->] (2.93, 0.5) -- (3.7, 0.5);
+    \node[below] at (3.3, 1.1) {$\delta_2$};
+\end{tikzpicture}
+% Adiciona legenda no gráfico
+\caption{}
+\end{figure}
+%-----------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%% Página 25 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{\underline{Exercício:}} \\
+Nicole Oresme (1320-1382) foi um clérigo e matemático francês associado à Universidade de Paris, na Baixa Idade Média. (Katz, p. 392). Oresme determinou o espaço total percorrido por um móbil com velocidade variável, supondo que na primeira metade do tempo a velocidade é 1, no próximo quarto igual 2, etc. (Katz, p. 398). Portanto, o cálculo equivale a determinar a soma da série:
+%----------------------- Figura 2 ---------------------------------------%
+\begin{figure} [H]
+    \centering
+    \begin{minipage}{0.4\linewidth}
+        \centering
+        \begin{tikzpicture}
+            % Desenhar o retângulo principal e as divisões
+            \draw[thick] (0,0) rectangle (6,3); % retângulo principal
+            \draw[thick] (2,0) -- (2,3); % linha vertical 1 (divisão de 1 e 1/2)
+            \draw[thick] (4,0) -- (4,3); % linha vertical 2 (divisão de 2 e 1/4)
+            \draw[thick] (5,0) -- (5,3); % linha vertical 3 (divisão de 3 e 1/8)
+        
+            % Adicionar os números dentro das divisões
+            \node at (1,2.25) {1};
+            \node at (3,2.25) {2};
+            \node at (4.5,2.25) {3};
+        
+            % Adicionar as frações na parte inferior
+            \node at (1,0.5) {$\frac{1}{2}$};
+            \node at (3,0.5) {$\frac{1}{4}$};
+            \node at (4.5,0.5) {$\frac{1}{8}$};
+        
+            % Adicionar os rótulos N= e t
+            \node at (-0.5,2.8) {$v=$};
+            \node[below] at (7,0) {$t$};
+        
+            % Adicionar a linha de tempo com a seta
+            \draw[->, thick] (0,0) -- (7, 0);
+            \node[below] at (0,0) {0};
+        \end{tikzpicture}
+    \end{minipage}
+    \hspace{1cm} % Ajusta o espaçamento entre as minipages
+    \begin{minipage}{0.52\linewidth}
+        \centering
+        \[
+        r_n = \frac{1}{2} \cdot 1 + \frac{1}{4} \cdot 2 + \frac{1}{8} \cdot 3 + ... + \frac{1}{2^n} \cdot n + ...
+        \]
+        \[
+        \text{Ou seja, } r_n = \sum_{k=1}^{n} k a^k \text{, onde } a = \frac{1}{2}
+        \]
+    \end{minipage}
+    \captionsetup{justification=raggedright, singlelinecheck=false, margin=3.7cm}
+    \caption{}
+\end{figure}
+
+%--------------------------------------------------------------------------
+
+\noindent\circled{1} Determine o valor de \(r_n\) em função de \(a\) \\ \\
+\noindent\circled{2} Calcule o valor do limite \(\lim_{n \to \infty} r_n\) \\ \\
+Sugestão: Observe que \(r_n = a \sum{k=1}^{n} k a^{k-1} = a \cdot s_n'\), onde \(s_n\) é a soma da série geométrica, ou seja, \(s_n = \frac{1-a^{n+1}}{1-a}\).
+\\ \\
+Portanto:
+\[
+r_n = a \frac{-(n+1) a^n (1-a) + (1-a^{n+1})}{(1-a)^2}
+\]
+\[
+= a \frac{1-a^{n+1} + (n+1)a^{n+1} - n a^n - a^n}{(1-a)^2}
+\]
+\[
+= a \frac{1 - \cancel{a^{n+1}} + n a^{n+1} + \cancel{a^{n+1}} - n a^n - a^n}{(1-a)^2}
+\]
+\[
+= a \frac{1 - a^n - n a^n (1-a)}{(1-a)^2}
+\]
+\[
+= a \frac{1-a^n}{(1-a)^2} - \frac{a \cdot n a^n}{1-a}
+\]
+\\
+Desta maneira, sabendo que \(\lim_{n \to \infty} a^n = 0\) se \(|a| < 1\), basta provar que \(\lim_{n \to \infty} n \cdot a^n = 0\) para obter \(\lim_{n \to \infty} r_n = \frac{a}{(1-a)^2}\). No caso particular \(a = \frac{1}{2}\) tem-se: \(\lim_{n \to \infty} r_n = \frac{1}{2} \cdot \frac{1}{\frac{1}{4}} = \frac{4}{2} = 2\), resultado obtido por Oresme através de um elegante argumento geométrico , vide Katz p. 398. \\
+Por outro lado, observando que \(\lim_{n \to \infty} s_n = \lim_{n \to \infty} \frac{1-a^n}{1-a} = \frac{1}{1-a}\), quando \(|a| < 1\), tem-se: \(a + a^2 + ... + a^n + ... = \frac{1}{1-a} - 1 = \frac{a}{1-a}\), igual a 1 no caso \(a = \frac{1}{2}\). \\
+Se a velocidade fosse constante \(v=2\)  espaço percorrido seria o mesmo.
+\\ \\
+\textbf{\underline{Exercício:}} \\
+Calcule as 100 (cem) primeiras casas decimais de \(\pi\) usando a Fórmula de Machin original, ou seja,
+\[
+\frac{\pi}{4} = 4 \cdot \arctan(\frac{1}{5}) - \arctan(\frac{1}{239})
+\]
+Para tanto, implemente o código em alguma linguagem de programação com bibliotecas de precisão arbitrária. Por exemplo:
+\begin{itemize}
+    \item C : GMP (GNU Multiple Precision Library)
+    \item C++ : CLN (Class for Large Numbers)
+    \item Java : BrgInteger \& BigDecimal
+    \item Python : Class "decimal" 
+\end{itemize}
+
+\noindent\textbf{\underline{Exercício:}} \\
+Calcule as casas decimais de \(\pi\) quebrando algum recorde histórico pós-1949. Por exemplo, 2.037 casas decimais obtidos pelo ENIAC em setembro de 1949. Para tanto, use as fórmulas:
+\[
+\frac{\pi}{4} = 12 \cdot \arctan(\frac{1}{49}) + 32 \cdot \arctan(\frac{1}{57}) - 5 \cdot \arctan(\frac{1}{239}) + 12 \cdot \arctan(\frac{1}{110.443})
+\]
+\begin{center}
+    (K. Takano, 1982)
+\end{center}
+\[
+\frac{\pi}{4} = 44 \cdot \arctan(\frac{1}{57}) + 7 \cdot \arctan(\frac{1}{239}) - 12 \cdot \arctan(\frac{1}{682} + 24 \cdot \arctan(\frac{1}{12.943})
+\]
+\begin{center}
+    (F.C.M. Størmer, 1896)
+\end{center}
+Usando a segunda fórmula para verificar o resultado obtido pela primeira. Observe que os termos com 57 e 239 podem ser reutilizados.
+\end{document}
